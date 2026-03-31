@@ -144,12 +144,12 @@ function HomePage() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="font-display flex flex-col items-center gap-0 mb-2"
           >
-            <div className="text-[clamp(32px,8vw,64px)] md:text-5xl lg:text-6xl flex justify-center gap-x-1 md:gap-x-2 leading-tight">
+            <div className="text-[clamp(24px,7vw,64px)] md:text-5xl lg:text-6xl flex flex-wrap justify-center gap-x-0.5 sm:gap-x-1 md:gap-x-2 leading-tight">
               {"TECHNOFEST".split("").map((char, i) => (
                 <GlitchLetter key={i} char={char} index={i} />
               ))}
             </div>
-            <div className="text-[clamp(28px,6vw,54px)] md:text-4xl lg:text-5xl text-amber flex justify-center gap-x-1 md:gap-x-2 leading-tight">
+            <div className="text-[clamp(20px,5vw,54px)] md:text-4xl lg:text-5xl text-amber flex flex-wrap justify-center gap-x-0.5 sm:gap-x-1 md:gap-x-2 leading-tight">
               {"2026".split("").map((char, i) => (
                 <GlitchLetter key={i + 10} char={char} index={i + 10} />
               ))}

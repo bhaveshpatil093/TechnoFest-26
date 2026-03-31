@@ -72,10 +72,10 @@ export const AudioPlayer = () => {
   };
 
   return (
-    <div className="fixed bottom-8 left-8 z-50 flex items-center gap-4">
+    <div className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-50 flex items-center gap-3 md:gap-4">
       <button
         onClick={togglePlay}
-        className="w-12 h-12 bg-surface-low/50 backdrop-blur-md border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-surface-high/50 hover:border-cyan/50 transition-all duration-300 group shadow-lg"
+        className="w-10 h-10 md:w-12 md:h-12 bg-surface-low/50 backdrop-blur-md border border-white/10 text-white rounded-full flex items-center justify-center hover:bg-surface-high/50 hover:border-cyan/50 transition-all duration-300 group shadow-lg"
         aria-label="Toggle Theme Music"
       >
         {isPlaying ? (
@@ -91,7 +91,7 @@ export const AudioPlayer = () => {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -10 }}
-            className="bg-surface-low/80 backdrop-blur-md border border-cyan/30 px-4 py-2.5 rounded-xl flex items-center gap-3 shadow-[0_0_20px_rgba(0,245,255,0.15)] pointer-events-none"
+            className="hidden sm:flex bg-surface-low/80 backdrop-blur-md border border-cyan/30 px-4 py-2.5 rounded-xl items-center gap-3 shadow-[0_0_20px_rgba(0,245,255,0.15)] pointer-events-none"
           >
             <Music size={14} className="text-cyan animate-bounce" />
             <span className="text-[10px] font-mono text-foreground tracking-widest flex flex-col uppercase">

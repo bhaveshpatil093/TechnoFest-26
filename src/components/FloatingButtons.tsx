@@ -26,7 +26,7 @@ export const FloatingButtons = () => {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
+    <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 flex flex-col gap-3 md:gap-4">
       {/* Scroll to Top Button */}
       <AnimatePresence>
         {showScrollTop && (
@@ -38,7 +38,7 @@ export const FloatingButtons = () => {
             <Magnetic strength={0.4}>
               <button
                 onClick={scrollToTop}
-                className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-all group"
+                className="w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-all group"
                 aria-label="Scroll to Top"
               >
                 <ArrowUp size={20} className="group-hover:-translate-y-1 transition-transform" />
