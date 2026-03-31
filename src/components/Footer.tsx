@@ -1,64 +1,86 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowRight, Instagram, Linkedin, Twitter, Github } from 'lucide-react';
+import { Magnetic } from './Magnetic';
 
 const FooterLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => {
   return (
-    <a 
-      href={href}
-      className="group relative text-foreground/40 hover:text-foreground transition-colors duration-300 py-1"
-    >
-      <span className="relative z-10">{children}</span>
-      <motion.span 
-        className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan shadow-[0_0_8px_rgba(0,245,255,0.8)]"
-        whileHover={{ w: '100%' }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-      />
-    </a>
+    <Magnetic strength={0.1}>
+      <a 
+        href={href}
+        className="group relative text-foreground/30 hover:text-cyan transition-all duration-300 py-1 text-xs font-mono uppercase tracking-widest block w-fit"
+      >
+        <span className="relative z-10">{children}</span>
+        <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan transition-all duration-300 group-hover:w-full shadow-[0_0_8px_rgba(231,29,35,0.8)]" />
+      </a>
+    </Magnetic>
   );
 };
 
 export const Footer = () => {
   const quickLinks = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '/' },
     { name: 'About', href: '#about' },
     { name: 'Events', href: '#events' },
     { name: 'Schedule', href: '#schedule' },
     { name: 'Team', href: '#team' },
-    { name: 'Register', href: '#register' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'Register', href: '/register' },
     { name: 'Contact', href: '#contact' },
   ];
 
+  const socialLinks = [
+    { icon: <Instagram size={18} />, href: '#', label: 'Instagram' },
+    { icon: <Linkedin size={18} />, href: '#', label: 'LinkedIn' },
+    { icon: <Twitter size={18} />, href: '#', label: 'Twitter' },
+    { icon: <Github size={18} />, href: '#', label: 'GitHub' },
+  ];
+
   return (
-    <footer className="relative bg-surface-low border-t border-surface-high pt-20 pb-10 overflow-hidden transition-colors duration-300">
+    <footer className="relative bg-background border-t border-white/5 pt-24 pb-12 overflow-hidden">
       {/* Top Glowing Divider Line */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan to-transparent shadow-[0_0_15px_rgba(0,245,255,0.5)]" />
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan/30 to-transparent" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
           
           {/* Left Column: Logo & Info */}
-          <div className="md:col-span-4 space-y-6">
+          <div className="md:col-span-5 space-y-8">
             <div>
-              <h2 className="text-3xl font-display font-black tracking-tighter italic text-foreground mb-2 transition-colors">
-                TF<span className="text-cyan drop-shadow-[0_0_10px_rgba(0,245,255,0.5)]">'26</span>
+              <h2 className="text-4xl font-display font-black tracking-tighter italic text-foreground mb-4">
+                TF<span className="text-cyan drop-shadow-[0_0_10px_rgba(231,29,35,0.5)]">'26</span>
               </h2>
-              <p className="text-xs font-mono text-cyan/70 uppercase tracking-[0.2em] font-bold transition-colors">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan/5 border border-cyan/10 text-cyan text-[9px] font-mono uppercase tracking-[0.2em] font-bold">
                 Technofest 2026 — AI & DS Dept.
-              </p>
+              </div>
             </div>
-            <p className="text-foreground/40 text-sm font-sub leading-relaxed max-w-xs transition-colors">
+            <p className="text-foreground/30 text-sm font-sub leading-relaxed max-w-sm tracking-wide">
               Late G. N. Sapkal College of Engineering. <br />
-              Empowering the next generation of AI and Data Science innovators.
+              A premier technical symposium dedicated to fostering innovation and excellence in the field of Artificial Intelligence and Data Science.
             </p>
+            
+            {/* Social Links */}
+            <div className="flex items-center gap-4 pt-4">
+              {socialLinks.map((social, i) => (
+                <Magnetic key={i} strength={0.2}>
+                  <a 
+                    href={social.href}
+                    aria-label={social.label}
+                    className="w-10 h-10 rounded-lg bg-surface-high/20 border border-white/5 flex items-center justify-center text-foreground/30 hover:text-cyan hover:border-cyan/30 hover:bg-cyan/5 transition-all duration-300 group"
+                  >
+                    <span className="group-hover:scale-110 transition-transform">{social.icon}</span>
+                  </a>
+                </Magnetic>
+              ))}
+            </div>
           </div>
 
           {/* Center Column: Quick Links */}
-          <div className="md:col-span-4">
-            <h4 className="text-foreground font-display font-bold uppercase tracking-widest text-sm mb-6 transition-colors">
-              Quick Navigation
+          <div className="md:col-span-3">
+            <h4 className="text-foreground/80 font-display font-black uppercase tracking-[0.2em] text-xs mb-8 italic">
+              Navigation
             </h4>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+            <div className="grid grid-cols-1 gap-y-3">
               {quickLinks.map((link) => (
                 <FooterLink key={link.name} href={link.href}>
                   {link.name}
@@ -68,50 +90,68 @@ export const Footer = () => {
           </div>
 
           {/* Right Column: Contact & CTA */}
-          <div className="md:col-span-4 space-y-8">
+          <div className="md:col-span-4 space-y-10">
             <div>
-              <h4 className="text-foreground font-display font-bold uppercase tracking-widest text-sm mb-6 transition-colors">
-                Contact Info
+              <h4 className="text-foreground/80 font-display font-black uppercase tracking-[0.2em] text-xs mb-8 italic">
+                Get In Touch
               </h4>
-              <ul className="space-y-3 text-sm text-foreground/40 font-sub transition-colors">
-                <li className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-cyan/60" />
+              <ul className="space-y-5 text-xs text-foreground/30 font-mono tracking-widest">
+                <li className="flex items-center gap-4 group cursor-pointer hover:text-cyan transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-cyan/5 border border-cyan/10 flex items-center justify-center group-hover:border-cyan/30 transition-colors">
+                    <Phone className="w-3.5 h-3.5 text-cyan/60" />
+                  </div>
                   <span>+91 80070 24545</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-cyan/60" />
-                  <span>monita.jadhav@sapkalknowledgehub.org</span>
+                <li className="flex items-center gap-4 group cursor-pointer hover:text-cyan transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-cyan/5 border border-cyan/10 flex items-center justify-center group-hover:border-cyan/30 transition-colors">
+                    <Mail className="w-3.5 h-3.5 text-cyan/60" />
+                  </div>
+                  <span className="break-all">monita.jadhav@sapkalknowledgehub.org</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-cyan/60 mt-1 flex-shrink-0" />
-                  <span>Sapkal Knowledge Hub, Anjaneri, Nashik.</span>
+                <li className="flex items-start gap-4 group cursor-pointer hover:text-cyan transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-cyan/5 border border-cyan/10 flex items-center justify-center group-hover:border-cyan/30 transition-colors mt-1">
+                    <MapPin className="w-3.5 h-3.5 text-cyan/60" />
+                  </div>
+                  <span className="leading-relaxed">Sapkal Knowledge Hub, Kalyani Hills, Anjaneri, Nashik.</span>
                 </li>
               </ul>
             </div>
             
-            <a 
-              href="#register" 
-              className="inline-flex items-center gap-2 px-6 py-3 bg-cyan/10 border border-cyan/30 rounded-sm text-cyan font-display font-bold uppercase tracking-widest text-xs hover:bg-cyan hover:text-background transition-all duration-300 group"
-            >
-              <span>Register Now</span>
-              <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </a>
+            <div className="pt-4">
+              <Magnetic strength={0.15}>
+                <a 
+                  href="/register" 
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-cyan text-background font-display font-black uppercase tracking-[0.3em] text-[10px] hover:bg-white transition-all duration-300 group shadow-[0_0_20px_rgba(231,29,35,0.2)]"
+                >
+                  <span>Join The Future</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </Magnetic>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t border-surface-high text-center space-y-2 transition-colors">
-          <p className="text-foreground/30 text-[10px] sm:text-xs font-sub tracking-wider transition-colors">
-            © 2026 Late G. N. Sapkal College of Engineering. All rights reserved.
-          </p>
-          <p className="text-cyan/40 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.3em] transition-colors">
-            Organized by Dept. of AI & Data Science Engineering.
-          </p>
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="space-y-2 text-center md:text-left">
+            <p className="text-foreground/20 text-[9px] font-mono uppercase tracking-[0.2em]">
+              © 2026 Late G. N. Sapkal College of Engineering.
+            </p>
+            <p className="text-cyan/20 text-[8px] font-mono uppercase tracking-[0.4em]">
+              Organized by Dept. of AI & Data Science Engineering.
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-8">
+            <a href="#" className="text-[9px] font-mono text-foreground/20 hover:text-cyan transition-colors uppercase tracking-widest">Privacy Policy</a>
+            <a href="#" className="text-[9px] font-mono text-foreground/20 hover:text-cyan transition-colors uppercase tracking-widest">Terms of Service</a>
+          </div>
         </div>
       </div>
 
       {/* Background Decorative Element */}
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-cyan/5 blur-[100px] rounded-full -mb-32 -mr-32 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan/5 blur-[150px] rounded-full -mb-64 -mr-64 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-amber/5 blur-[120px] rounded-full -mt-32 -ml-32 pointer-events-none" />
     </footer>
   );
 };

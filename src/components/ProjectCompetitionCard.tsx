@@ -27,8 +27,8 @@ const CoordinatorBlock = ({ title, name, phone, email }: { title: string, name: 
 
 export const ProjectCompetitionCard = () => {
   return (
-    <section id="events" className="py-24 px-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section id="events" className="min-h-screen flex items-center py-12 px-6 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -38,8 +38,8 @@ export const ProjectCompetitionCard = () => {
         >
           <div className="flex flex-col lg:flex-row">
             {/* Left Side: Animated Icon */}
-            <div className="lg:w-2/5 bg-cyan/5 p-12 flex items-center justify-center relative overflow-hidden border-b lg:border-b-0 lg:border-r border-surface-low">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,245,255,0.1)_0%,transparent_70%)]" />
+            <div className="lg:w-1/3 bg-cyan/5 p-8 flex items-center justify-center relative overflow-hidden border-b lg:border-b-0 lg:border-r border-surface-low">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(231,29,35,0.1)_0%,transparent_70%)]" />
               
               <motion.div
                 animate={{ 
@@ -53,7 +53,7 @@ export const ProjectCompetitionCard = () => {
                 }}
                 className="relative z-10"
               >
-                <svg width="200" height="200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-cyan drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]">
+                <svg width="140" height="140" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-cyan drop-shadow-[0_0_15px_rgba(231,29,35,0.5)]">
                   <path d="M12 2V4M12 20V22M4 12H2M22 12H20M18.36 5.64L16.95 7.05M7.05 16.95L5.64 18.36M18.36 18.36L16.95 16.95M7.05 7.05L5.64 5.64" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                   <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1"/>
                   <path d="M12 7V12L15 15" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
@@ -93,9 +93,9 @@ export const ProjectCompetitionCard = () => {
             </div>
 
             {/* Right Side: Content */}
-            <div className="lg:w-3/5 p-8 md:p-12 flex flex-col justify-center">
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-4">
+            <div className="lg:w-2/3 p-6 md:p-10 flex flex-col justify-center">
+              <div className="mb-6">
+                <div className="flex items-center gap-3 mb-3">
                   <span className="px-3 py-1 bg-cyan/10 text-cyan text-[10px] font-display uppercase tracking-widest border border-cyan/20 rounded-full">
                     Event 01
                   </span>
@@ -104,17 +104,17 @@ export const ProjectCompetitionCard = () => {
                 
                 <GlitchHeading 
                   dataText="Project Competition"
-                  className="text-3xl md:text-5xl mb-4 text-glow-cyan"
+                  className="text-2xl md:text-4xl mb-3 text-glow-cyan"
                 >
                   Project <span className="text-amber">Competition</span>
                 </GlitchHeading>
                 
-                <p className="text-foreground/70 font-body leading-relaxed max-w-xl">
+                <p className="text-foreground/70 font-body leading-relaxed max-w-xl text-sm md:text-base">
                   Unleash the power of data and intelligence by showcasing your most innovative AI & DS solutions to a panel of industry experts. This is your stage to transform theoretical concepts into impactful real-world projects that redefine the future of technology.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <CoordinatorBlock 
                   title="Staff Coordinator"
                   name="Prof. S. D. Bagade"
@@ -132,13 +132,13 @@ export const ProjectCompetitionCard = () => {
               <div>
                 <motion.button
                   animate={{ 
-                    boxShadow: ["0 0 10px rgba(0, 245, 255, 0.3)", "0 0 25px rgba(0, 245, 255, 0.6)", "0 0 10px rgba(0, 245, 255, 0.3)"]
+                    boxShadow: ["0 0 10px rgba(231, 29, 35, 0.3)", "0 0 25px rgba(231, 29, 35, 0.6)", "0 0 10px rgba(231, 29, 35, 0.3)"]
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="btn-primary flex items-center gap-3 group"
+                  className="btn-primary flex items-center gap-3 group !py-2.5 !px-6 !text-xs"
                 >
                   Register for This Event
-                  <ExternalLink size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </motion.button>
               </div>
             </div>

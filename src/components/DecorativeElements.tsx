@@ -14,18 +14,114 @@ export const WaveDivider = () => (
   </div>
 );
 
+export const UpsideDownParticles = () => {
+  const particles = Array.from({ length: 40 });
+  return (
+    <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
+      {particles.map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{ 
+            x: Math.random() * 100 + "%", 
+            y: Math.random() * 100 + "%",
+            opacity: Math.random() * 0.5 + 0.1,
+            scale: Math.random() * 0.5 + 0.5
+          }}
+          animate={{
+            y: ["-10%", "110%"],
+            x: ["-5%", "5%"],
+            rotate: [0, 360],
+          }}
+          transition={{
+            y: {
+              duration: Math.random() * 20 + 20,
+              repeat: Infinity,
+              ease: "linear",
+            },
+            x: {
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            },
+            rotate: {
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              ease: "linear",
+            }
+          }}
+          className="absolute w-1 h-1 bg-white/20 rounded-full blur-[1px]"
+        />
+      ))}
+    </div>
+  );
+};
+
 export const AIWatermark = () => (
   <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-0">
-    <span className="text-[40vw] font-display font-black text-foreground/[0.02] rotate-[-15deg] select-none uppercase transition-colors duration-300">
-      AI
+    <span className="text-[40vw] font-display font-black text-cyan/[0.03] rotate-[-15deg] select-none uppercase transition-colors duration-300">
+      011
     </span>
+  </div>
+);
+
+export const MindFlayerSilhouette = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-10">
+    <motion.div
+      initial={{ opacity: 0, scale: 1.2 }}
+      whileInView={{ opacity: 0.15, scale: 1 }}
+      transition={{ duration: 5, ease: "easeOut" }}
+      className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full flex items-start justify-center pt-20"
+    >
+      <img 
+        src="https://picsum.photos/seed/monster/1200/800?grayscale&blur=2" 
+        alt="Mind Flayer Silhouette" 
+        className="w-full max-w-5xl object-contain mix-blend-overlay"
+        referrerPolicy="no-referrer"
+      />
+    </motion.div>
+  </div>
+);
+
+export const StrangerSticker = ({ src, className, delay = 0 }: { src: string, className: string, delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0, rotate: -20 }}
+    whileInView={{ opacity: 0.6, scale: 1, rotate: Math.random() * 20 - 10 }}
+    viewport={{ once: true }}
+    transition={{ type: "spring", damping: 12, stiffness: 100, delay }}
+    className={`absolute pointer-events-none z-10 ${className}`}
+  >
+    <img 
+      src={src} 
+      alt="Stranger Things Sticker" 
+      className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(231,29,35,0.5)]"
+      referrerPolicy="no-referrer"
+    />
+  </motion.div>
+);
+
+export const RiftEffect = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+    <motion.div
+      animate={{ 
+        opacity: [0.1, 0.2, 0.1],
+        scale: [1, 1.05, 1]
+      }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_center,rgba(231,29,35,0.15)_0%,transparent_70%)] blur-[100px]"
+    />
+  </div>
+);
+
+export const VhsOverlay = () => (
+  <div className="fixed inset-0 pointer-events-none z-[99] opacity-[0.03] mix-blend-screen overflow-hidden">
+    <div className="absolute inset-0 bg-[url('https://media.giphy.com/media/oEI9uWUqnW9kA/giphy.gif')] bg-repeat opacity-20" />
+    <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]" />
   </div>
 );
 
 export const GridBackground = () => {
   return (
     <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-background transition-colors duration-300">
-      {/* Base Grid */}
       <div 
         className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07] transition-opacity duration-300"
         style={{
@@ -60,7 +156,7 @@ export const GridBackground = () => {
 
 export const ScanningGrid = () => (
   <div className="absolute inset-0 pointer-events-none z-0">
-    <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,245,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,245,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(231,29,35,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(231,29,35,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
     <div className="scan-line" />
   </div>
 );
@@ -70,13 +166,13 @@ export const CircuitTrace = () => (
     <svg width="100%" height="60" viewBox="0 0 1200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path 
         d="M0 30H200L230 10H400L430 50H600L630 30H1200" 
-        stroke="rgba(0, 245, 255, 0.1)" 
+        stroke="rgba(231, 29, 35, 0.1)" 
         strokeWidth="2" 
         strokeLinecap="round"
       />
       <motion.path 
         d="M0 30H200L230 10H400L430 50H600L630 30H1200" 
-        stroke="rgba(0, 245, 255, 0.4)" 
+        stroke="rgba(231, 29, 35, 0.4)" 
         strokeWidth="2" 
         strokeLinecap="round"
         initial={{ pathLength: 0, opacity: 0 }}
@@ -93,7 +189,7 @@ export const CircuitTrace = () => (
       />
       <motion.circle 
         r="4" 
-        fill="#00F5FF"
+        fill="#E71D23"
         initial={{ offsetDistance: "0%" }}
         animate={{ 
           offsetDistance: "100%",
@@ -105,7 +201,7 @@ export const CircuitTrace = () => (
         }}
         style={{ 
           offsetPath: "path('M0 30H200L230 10H400L430 50H600L630 30H1200')",
-          boxShadow: "0 0 10px #00F5FF"
+          boxShadow: "0 0 10px #E71D23"
         }}
       />
     </svg>

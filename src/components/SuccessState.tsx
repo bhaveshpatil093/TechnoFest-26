@@ -20,7 +20,7 @@ const Confetti = () => {
       x: Math.random() * 600 - 300,
       y: Math.random() * -600 - 100,
       rotation: Math.random() * 360,
-      color: ['#00F5FF', '#FFAA00', '#ffffff', '#4ADE80', '#FF4500'][Math.floor(Math.random() * 5)],
+      color: ['#E71D23', '#F27D26', '#ffffff', '#E71D23', '#F27D26'][Math.floor(Math.random() * 5)],
       size: Math.random() * 8 + 4,
     }));
     setParticles(newParticles);
@@ -160,7 +160,7 @@ export const SuccessState: React.FC<SuccessStateProps> = ({
               const home = document.getElementById('home');
               if (home) home.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-cyan text-black rounded-xl font-display text-xs font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(0,245,255,0.4)] transition-all"
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-cyan text-black rounded-xl font-display text-xs font-bold uppercase tracking-widest hover:shadow-[0_0_20px_rgba(231,29,35,0.4)] transition-all"
           >
             <Home className="w-4 h-4" />
             <span>Go Home</span>

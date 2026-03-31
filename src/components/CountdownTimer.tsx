@@ -24,11 +24,11 @@ const FlipDigit = ({ value, unit }: any) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className={`glass-card w-20 h-24 md:w-24 md:h-28 flex items-center justify-center mb-2 relative overflow-hidden group flip-digit ${isAnimating ? 'animating' : ''}`}>
+      <div className={`glass-card w-16 h-20 md:w-20 md:h-24 flex items-center justify-center mb-2 relative overflow-hidden group flip-digit ${isAnimating ? 'animating' : ''}`}>
         <div className="absolute inset-0 bg-cyan/5 group-hover:bg-cyan/10 transition-colors" />
         
         <div className="flip-digit-inner relative z-10 w-full h-full flex items-center justify-center">
-          <span className="text-3xl md:text-4xl font-display text-cyan text-glow-cyan">
+          <span className="text-2xl md:text-3xl font-display text-cyan text-glow-cyan">
             {value.toString().padStart(2, '0')}
           </span>
         </div>

@@ -74,7 +74,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
                   }}
                   className={`text-6xl md:text-8xl font-display font-black italic ${
                     item.char === "'" ? 'text-amber' : 'text-white'
-                  } ${index > 2 ? 'text-cyan drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]' : ''}`}
+                  } ${index > 2 ? 'text-cyan drop-shadow-[0_0_15px_rgba(231,29,35,0.5)]' : ''}`}
                 >
                   {item.char}
                 </motion.span>
@@ -86,7 +86,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 1.2, ease: "easeInOut" }}
-              className="absolute -bottom-4 left-0 w-full h-[2px] bg-cyan shadow-[0_0_15px_#00F5FF] origin-left"
+              className="absolute -bottom-4 left-0 w-full h-[2px] bg-cyan shadow-[0_0_15px_#E71D23] origin-left"
             />
             
             {/* Circuit End Node */}
@@ -94,20 +94,20 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3, delay: 2 }}
-              className="absolute -bottom-[5px] right-0 w-2 h-2 rounded-full bg-cyan shadow-[0_0_10px_#00F5FF]"
+              className="absolute -bottom-[5px] right-0 w-2 h-2 rounded-full bg-cyan shadow-[0_0_10px_#E71D23]"
             />
           </div>
 
           {/* Progress Container */}
           <div className="w-64 md:w-80 space-y-4">
             <div className="flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.3em]">
-              <span className="text-white/40">Initializing Systems...</span>
+              <span className="text-white/40">Entering The Upside Down...</span>
               <span className="text-cyan">{Math.round(progress)}%</span>
             </div>
             
             <div className="h-[2px] w-full bg-white/10 rounded-full overflow-hidden relative">
               <motion.div
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-cyan to-amber"
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-cyan to-amber shadow-[0_0_10px_#E71D23]"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -116,16 +116,16 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
               <motion.div
                 animate={{ opacity: [0.3, 1, 0.3] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
-                className="text-[9px] font-mono text-amber uppercase tracking-[0.5em]"
+                className="text-[9px] font-mono text-cyan uppercase tracking-[0.5em] text-glow-cyan"
               >
-                Technofest 2026
+                Friends Don't Lie
               </motion.div>
             </div>
           </div>
 
           {/* Background Grid Accent */}
           <div className="absolute inset-0 pointer-events-none opacity-10">
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,245,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,245,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(231,29,35,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(231,29,35,0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
           </div>
         </motion.div>
       )}
