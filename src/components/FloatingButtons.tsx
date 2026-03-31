@@ -27,34 +27,6 @@ export const FloatingButtons = () => {
 
   return (
     <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
-      {/* Register Now Button */}
-      <AnimatePresence>
-        {showRegister && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0, x: 20 }}
-          >
-            <Magnetic strength={0.4}>
-              <Link
-                to="/register"
-                className="relative w-14 h-14 bg-cyan text-black rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(231,29,35,0.4)] group block"
-                aria-label="Register Now"
-              >
-                {/* Pulsing Ring */}
-                <div className="absolute inset-0 rounded-full bg-cyan animate-ping opacity-20" />
-                <UserPlus size={24} />
-                
-                {/* Tooltip */}
-                <span className="absolute right-full mr-4 px-3 py-1 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-white/10">
-                  Register Now
-                </span>
-              </Link>
-            </Magnetic>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Scroll to Top Button */}
       <AnimatePresence>
         {showScrollTop && (

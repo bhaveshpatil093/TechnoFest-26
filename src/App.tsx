@@ -23,6 +23,7 @@ import { Preloader } from "./components/Preloader";
 import { WaveDivider, AIWatermark, ScanningGrid, CircuitTrace, GridBackground, UpsideDownParticles, MindFlayerSilhouette, StrangerSticker, RiftEffect, VhsOverlay } from "./components/DecorativeElements";
 import RegisterPage from "./pages/RegisterPage";
 import { FloatingButtons } from './components/FloatingButtons';
+import { AudioPlayer } from './components/AudioPlayer';
 import { CustomCursor } from "./components/CustomCursor";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { Magnetic } from "./components/Magnetic";
@@ -85,43 +86,16 @@ function HomePage() {
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex flex-col items-center justify-center px-6 pt-32 pb-12 z-20 overflow-hidden">
         {/* Background Image Overlay */}
-        <div className="absolute inset-0 z-[-1] opacity-20">
+        <div className="absolute inset-0 z-[-1] opacity-60">
           <img 
-            src="https://picsum.photos/seed/dark-woods/1920/1080?blur=4" 
-            alt="Dark Woods" 
+            src="/assets/stranger-things-bg.jpg" 
+            alt="Stranger Things Theme" 
             className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
         </div>
 
-        {/* Floating Stickers */}
-        <StrangerSticker 
-          src="https://picsum.photos/seed/walkie/200/200?grayscale" 
-          className="top-1/4 left-[10%] w-20 h-20 md:w-32 md:h-32" 
-          delay={0.5}
-        />
-        <StrangerSticker 
-          src="https://picsum.photos/seed/bike/200/200?grayscale" 
-          className="bottom-1/4 right-[10%] w-24 h-24 md:w-40 md:h-40" 
-          delay={0.8}
-        />
-        <StrangerSticker 
-          src="https://picsum.photos/seed/cassette/200/200?grayscale" 
-          className="top-1/3 right-[15%] w-16 h-16 md:w-24 md:h-24" 
-          delay={1.2}
-        />
 
-        <StrangerSticker 
-          src="https://picsum.photos/seed/waffle/200/200?grayscale" 
-          className="top-1/2 left-[5%] w-16 h-16 md:w-24 md:h-24" 
-          delay={1.5}
-        />
-        <StrangerSticker 
-          src="https://picsum.photos/seed/demogorgon/200/200?grayscale" 
-          className="bottom-1/3 right-[5%] w-20 h-20 md:w-32 md:h-32" 
-          delay={1.8}
-        />
         <motion.div 
           style={{ x: mouseX, y: mouseY }}
           animate={{ 
@@ -312,6 +286,7 @@ export default function App() {
             </Routes>
 
             <Footer />
+            <AudioPlayer />
             <FloatingButtons />
           </motion.div>
         )}

@@ -246,8 +246,17 @@ export const TeamSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-12"
         >
+          {/* Team Image Section */}
+          <div className="w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-white/5 relative bg-surface-low/30 backdrop-blur-sm">
+            <img 
+              src="/assets/gang.jpg" 
+              alt="Technofest Team" 
+              className="w-full h-auto max-h-[500px] object-contain md:object-cover"
+            />
+          </div>
+
           <div className="flex items-center gap-4">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan/20 to-transparent" />
             <h3 className="text-xl font-black tracking-tighter italic text-foreground flex items-center gap-2">

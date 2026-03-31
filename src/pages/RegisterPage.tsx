@@ -41,7 +41,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-cyan selection:text-background overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground selection:bg-cyan selection:text-background overflow-clip">
       <Navbar />
       <GridBackground />
       <ParticleBackground />
@@ -76,46 +76,73 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* Event Selector Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {events.map((event) => (
-              <Magnetic key={event.id} strength={0.2}>
-                <button
-                  onClick={() => handleEventChange(event.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all duration-300 group ${
-                    activeEvent === event.id
-                      ? 'bg-cyan/10 border-cyan text-cyan shadow-[0_0_20px_rgba(231,29,35,0.2)]'
-                      : 'bg-surface-low border-border text-foreground/50 hover:border-cyan/50 hover:text-foreground'
-                  }`}
-                >
-                  <event.icon 
-                    size={16} 
-                    className={activeEvent === event.id ? 'text-cyan' : 'text-foreground/30 group-hover:text-cyan/50'} 
-                  />
-                  <span className="font-display text-[10px] uppercase tracking-widest font-bold">
-                    {event.name}
-                  </span>
-                </button>
-              </Magnetic>
-            ))}
-          </div>
+          {/* Main Layout Container */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start mt-8">
+            {/* Left Side Image */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="w-full lg:w-1/3 xl:w-2/5 rounded-2xl overflow-hidden border border-cyan/20 shadow-[0_0_30px_rgba(231,29,35,0.15)] relative lg:sticky lg:top-28 glass-card p-2 h-max"
+            >
+              <div className="absolute inset-0 bg-cyan/10 pointer-events-none mix-blend-overlay"></div>
+              <img 
+                src="/assets/will.webp" 
+                alt="Registration Portal" 
+                className="w-full rounded-xl object-cover h-64 md:h-80 lg:h-[calc(100vh-9rem)] hover:scale-105 transition-all duration-700"
+              />
+              <div className="absolute hidden lg:block bottom-6 left-6 right-6">
+                 <div className="glass-card p-4 border-cyan/30 bg-background/80 backdrop-blur-md text-center">
+                    <p className="font-display font-black text-cyan uppercase tracking-widest text-xs mb-1">Warning</p>
+                    <p className="font-mono text-[10px] text-foreground/70 uppercase">Do not stray from the path. Complete your registration.</p>
+                 </div>
+              </div>
+            </motion.div>
 
-          {/* Form Container */}
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeEvent}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
-              >
-                {activeEvent === 'project' && <RegistrationForm />}
-                {activeEvent === 'ai' && <AIPromptingRegistration />}
-                {activeEvent === 'ff' && <FreeFireRegistration />}
-                {activeEvent === 'cricket' && <NeonCricketRegistration />}
-              </motion.div>
-            </AnimatePresence>
+            {/* Right Side Forms & Tabs */}
+            <div className="w-full lg:w-2/3 xl:w-3/5 flex flex-col">
+              {/* Event Selector Tabs */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
+                {events.map((event) => (
+                  <Magnetic key={event.id} strength={0.2}>
+                    <button
+                      onClick={() => handleEventChange(event.id)}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all duration-300 group ${
+                        activeEvent === event.id
+                          ? 'bg-cyan/10 border-cyan text-cyan shadow-[0_0_20px_rgba(231,29,35,0.2)]'
+                          : 'bg-surface-low border-border text-foreground/50 hover:border-cyan/50 hover:text-foreground'
+                      }`}
+                    >
+                      <event.icon 
+                        size={16} 
+                        className={activeEvent === event.id ? 'text-cyan' : 'text-foreground/30 group-hover:text-cyan/50'} 
+                      />
+                      <span className="font-display text-[10px] uppercase tracking-widest font-bold">
+                        {event.name}
+                      </span>
+                    </button>
+                  </Magnetic>
+                ))}
+              </div>
+
+              {/* Form Container */}
+              <div className="relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeEvent}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    {activeEvent === 'project' && <RegistrationForm />}
+                    {activeEvent === 'ai' && <AIPromptingRegistration />}
+                    {activeEvent === 'ff' && <FreeFireRegistration />}
+                    {activeEvent === 'cricket' && <NeonCricketRegistration />}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
           </div>
         </div>
       </main>

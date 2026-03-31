@@ -90,15 +90,14 @@ export const AboutSection = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="w-full md:w-64 h-48 rounded-xl overflow-hidden border border-cyan/20 shadow-cyan relative group"
+                className="w-full md:w-64 h-48 rounded-xl overflow-hidden border border-cyan/20 shadow-[0_0_20px_rgba(0,245,255,0.1)] relative group bg-surface-low"
               >
                 <img 
-                  src="https://picsum.photos/seed/retro-tech/400/300?grayscale" 
-                  alt="Retro Tech" 
-                  className="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500"
-                  referrerPolicy="no-referrer"
+                  src="/assets/14.png" 
+                  alt="Technofest About" 
+                  className="w-full h-full object-contain p-2 hover:scale-105 transition-all duration-500 drop-shadow-[0_0_10px_rgba(0,245,255,0.3)]"
                 />
-                <div className="absolute inset-0 bg-cyan/10 group-hover:bg-transparent transition-colors" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
               </motion.div>
             </div>
           </div>

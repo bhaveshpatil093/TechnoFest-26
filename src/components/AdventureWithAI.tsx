@@ -17,6 +17,7 @@ interface SubEvent {
   student: Coordinator;
   accent: string;
   icon: ReactNode;
+  image?: string;
 }
 
 const subEvents: SubEvent[] = [
@@ -37,6 +38,7 @@ const subEvents: SubEvent[] = [
     student: { name: "Mr. Tejas B. Bhalerao", phone: "8421453265" },
     accent: "#F27D26", // Stranger Things Orange
     icon: <Gamepad2 size={32} />,
+    image: "/assets/2.jpg",
   },
   {
     id: "2.3",
@@ -46,6 +48,7 @@ const subEvents: SubEvent[] = [
     student: { name: "Mr. Krushna R. Thakare", phone: "963942584" },
     accent: "#E71D23", // Stranger Things Red
     icon: <Trophy size={32} />,
+    image: "/assets/3.jpg",
   },
 ];
 
@@ -56,81 +59,99 @@ const SubEventCard = ({ event, index }: { event: SubEvent; index: number }) => {
       whileInView={{ opacity: 1, rotateY: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
-      className="glass-card p-5 flex flex-col h-full relative group overflow-hidden"
+      className="glass-card flex flex-col h-full relative group overflow-hidden"
       style={{ borderColor: `${event.accent}33` }}
     >
+      {/* Dynamic Background Image */}
+      {event.image && (
+        <>
+          <img 
+            src={event.image} 
+            alt={event.name} 
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1" 
+          />
+          {/* Gradients to keep text highly legible while image shines */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-black/40 pointer-events-none group-hover:bg-black/10 transition-colors duration-500" />
+        </>
+      )}
+
       {/* Accent Glow */}
       <div 
         className="absolute -top-10 -right-10 w-32 h-32 blur-[60px] opacity-20 transition-opacity group-hover:opacity-40"
         style={{ backgroundColor: event.accent }}
       />
 
-      <div className="mb-4">
-        <div 
-          className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 border transition-all duration-300 group-hover:scale-110"
+      <div className="p-6 flex flex-col h-full relative z-10 w-full">
+        <div className="mb-4">
+          <div 
+            className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 border transition-all duration-300 group-hover:scale-110 shadow-lg"
+            style={{ 
+              backgroundColor: `${event.accent}11`,
+              borderColor: `${event.accent}44`,
+              color: event.accent,
+              boxShadow: `0 0 15px ${event.accent}22`
+            }}
+          >
+            {event.icon}
+          </div>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-[9px] font-display font-bold px-2.5 py-1 rounded-full bg-surface-low text-foreground/40 border border-surface-high uppercase tracking-widest backdrop-blur-md">
+              Sub-Event {event.id}
+            </span>
+          </div>
+          <h3 className="text-xl font-display mb-1 drop-shadow-md" style={{ color: event.accent }}>
+            {event.name}
+          </h3>
+          <p className="text-foreground/60 text-xs font-sub italic leading-snug">
+            "{event.tagline}"
+          </p>
+        </div>
+
+        <div className="space-y-4 mb-8 flex-grow">
+          <div className="space-y-1 bg-surface-high/30 p-2.5 rounded-lg border border-white/5 backdrop-blur-sm">
+            <p className="text-[9px] uppercase tracking-widest text-foreground/40 font-bold mb-1">Staff Coordinator</p>
+            <div className="flex flex-col">
+              <span className="text-xs font-semibold text-foreground/90">{event.staff.name}</span>
+              <a href={`tel:${event.staff.phone}`} className="text-[10px] text-foreground/50 hover:text-foreground flex items-center gap-1.5 transition-colors mt-0.5">
+                <Phone size={10} /> {event.staff.phone}
+              </a>
+            </div>
+          </div>
+          <div className="space-y-1 bg-surface-high/30 p-2.5 rounded-lg border border-white/5 backdrop-blur-sm">
+            <p className="text-[9px] uppercase tracking-widest text-foreground/40 font-bold mb-1">Student Coordinator</p>
+            <div className="flex flex-col">
+              <span className="text-xs font-semibold text-foreground/90">{event.student.name}</span>
+              <a href={`tel:${event.student.phone}`} className="text-[10px] text-foreground/50 hover:text-foreground flex items-center gap-1.5 transition-colors mt-0.5">
+                <Phone size={10} /> {event.student.phone}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <button 
+          className="w-full py-3 rounded-lg font-display text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300 border shadow-lg"
           style={{ 
             backgroundColor: `${event.accent}11`,
             borderColor: `${event.accent}44`,
-            color: event.accent,
-            boxShadow: `0 0 15px ${event.accent}22`
+            color: event.accent
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = event.accent;
+            e.currentTarget.style.color = '#fff';
+            e.currentTarget.style.boxShadow = `0 0 20px ${event.accent}66`;
+            e.currentTarget.style.borderColor = event.accent;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = `${event.accent}11`;
+            e.currentTarget.style.color = event.accent;
+            e.currentTarget.style.boxShadow = 'none';
+            e.currentTarget.style.borderColor = `${event.accent}44`;
           }}
         >
-          {event.icon}
-        </div>
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-[9px] font-display font-bold px-2 py-0.5 rounded-full bg-surface-low text-foreground/40 border border-surface-high uppercase tracking-widest">
-            Sub-Event {event.id}
-          </span>
-        </div>
-        <h3 className="text-xl font-display mb-1" style={{ color: event.accent }}>
-          {event.name}
-        </h3>
-        <p className="text-foreground/60 text-xs font-sub italic leading-snug">
-          "{event.tagline}"
-        </p>
+          Register Now
+        </button>
       </div>
-
-      <div className="space-y-3 mb-6 flex-grow">
-        <div className="space-y-1">
-          <p className="text-[9px] uppercase tracking-widest text-foreground/30 font-bold">Staff Coordinator</p>
-          <div className="flex flex-col">
-            <span className="text-xs font-semibold text-foreground/90">{event.staff.name}</span>
-            <a href={`tel:${event.staff.phone}`} className="text-[10px] text-foreground/50 hover:text-foreground flex items-center gap-1 transition-colors">
-              <Phone size={8} /> {event.staff.phone}
-            </a>
-          </div>
-        </div>
-        <div className="space-y-1">
-          <p className="text-[9px] uppercase tracking-widest text-foreground/30 font-bold">Student Coordinator</p>
-          <div className="flex flex-col">
-            <span className="text-xs font-semibold text-foreground/90">{event.student.name}</span>
-            <a href={`tel:${event.student.phone}`} className="text-[10px] text-foreground/50 hover:text-foreground flex items-center gap-1 transition-colors">
-              <Phone size={8} /> {event.student.phone}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <button 
-        className="w-full py-2.5 rounded-lg font-display text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300 border"
-        style={{ 
-          backgroundColor: `${event.accent}11`,
-          borderColor: `${event.accent}44`,
-          color: event.accent
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = event.accent;
-          e.currentTarget.style.color = '#000';
-          e.currentTarget.style.boxShadow = `0 0 20px ${event.accent}66`;
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = `${event.accent}11`;
-          e.currentTarget.style.color = event.accent;
-          e.currentTarget.style.boxShadow = 'none';
-        }}
-      >
-        Register Now
-      </button>
     </motion.div>
   );
 };
@@ -142,21 +163,19 @@ export const AdventureWithAI = () => {
         {/* Header Block */}
         <div className="flex flex-col items-center text-center mb-10">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            animate={{ y: [0, -10, 0] }}
+            transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
             viewport={{ once: true }}
-            className="mb-4 relative"
+            className="mb-6 relative z-10"
           >
-            <div className="absolute inset-0 bg-cyan/20 blur-[40px] rounded-full" />
-            <div className="relative w-16 h-16 bg-black border border-cyan/30 rounded-2xl flex items-center justify-center text-cyan shadow-[0_0_30px_rgba(231,29,35,0.2)]">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.5 14.5L14.5 9.5M14.5 14.5L9.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="1.5"/>
-                <path d="M8 9C8 9 8.5 8.5 9.5 8.5C10.5 8.5 11 9 11 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M13 9C13 9 13.5 8.5 14.5 8.5C15.5 8.5 16 9 16 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M9 15.5C9 15.5 10 16.5 12 16.5C14 16.5 15 15.5 15 15.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </div>
+            <div className="absolute inset-0 bg-cyan/30 blur-[50px] rounded-full" />
+            <img 
+              src="/assets/15.png" 
+              alt="AI Adventure" 
+              className="relative w-28 h-28 object-contain drop-shadow-[0_0_20px_rgba(0,245,255,0.4)]"
+            />
           </motion.div>
 
           <motion.div

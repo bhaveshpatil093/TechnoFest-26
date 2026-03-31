@@ -37,59 +37,23 @@ export const ProjectCompetitionCard = () => {
           className="glass-card overflow-hidden group border-cyan/10 hover:border-cyan/40"
         >
           <div className="flex flex-col lg:flex-row">
-            {/* Left Side: Animated Icon */}
-            <div className="lg:w-1/3 bg-cyan/5 p-8 flex items-center justify-center relative overflow-hidden border-b lg:border-b-0 lg:border-r border-surface-low">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(231,29,35,0.1)_0%,transparent_70%)]" />
+            {/* Left Side: Event Image */}
+            <div className="lg:w-1/3 relative overflow-hidden border-b lg:border-b-0 lg:border-r border-cyan/10 group/img min-h-[300px] lg:min-h-full">
+              <img 
+                src="/assets/1.jpg" 
+                alt="Project Competition" 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-cyan/5 transition-opacity duration-300 group-hover/img:opacity-0 pointer-events-none" />
               
-              <motion.div
-                animate={{ 
-                  scale: [1, 1.05, 1],
-                  opacity: [0.8, 1, 0.8]
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity, 
-                  ease: "easeInOut" 
-                }}
-                className="relative z-10"
-              >
-                <svg width="140" height="140" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-cyan drop-shadow-[0_0_15px_rgba(231,29,35,0.5)]">
-                  <path d="M12 2V4M12 20V22M4 12H2M22 12H20M18.36 5.64L16.95 7.05M7.05 16.95L5.64 18.36M18.36 18.36L16.95 16.95M7.05 7.05L5.64 5.64" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1"/>
-                  <path d="M12 7V12L15 15" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                  <motion.path 
-                    d="M9 12H15M12 9V15" 
-                    stroke="currentColor" 
-                    strokeWidth="0.5" 
-                    animate={{ opacity: [0.2, 1, 0.2] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  {/* Circuit lines */}
-                  <path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 2"/>
-                </svg>
-              </motion.div>
-              
-              {/* Floating particles inside the icon area */}
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-cyan rounded-full"
-                  animate={{
-                    y: [0, -100],
-                    x: [0, Math.random() * 40 - 20],
-                    opacity: [0, 1, 0]
-                  }}
-                  transition={{
-                    duration: 2 + Math.random() * 2,
-                    repeat: Infinity,
-                    delay: Math.random() * 2
-                  }}
-                  style={{
-                    left: `${20 + Math.random() * 60}%`,
-                    bottom: '10%'
-                  }}
-                />
-              ))}
+              {/* Event Badge */}
+              <div className="absolute bottom-6 left-6 z-10 hidden lg:block">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-cyan animate-pulse shadow-[0_0_10px_#00f5ff]" />
+                  <span className="text-[10px] font-mono text-cyan tracking-widest uppercase shadow-black drop-shadow-md">Live Event</span>
+                </div>
+              </div>
             </div>
 
             {/* Right Side: Content */}

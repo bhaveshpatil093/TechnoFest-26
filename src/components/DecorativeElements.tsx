@@ -68,15 +68,14 @@ export const MindFlayerSilhouette = () => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-10">
     <motion.div
       initial={{ opacity: 0, scale: 1.2 }}
-      whileInView={{ opacity: 0.15, scale: 1 }}
+      whileInView={{ opacity: 0.25, scale: 1 }}
       transition={{ duration: 5, ease: "easeOut" }}
       className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full flex items-start justify-center pt-20"
     >
       <img 
-        src="https://picsum.photos/seed/monster/1200/800?grayscale&blur=2" 
+        src="/assets/st_mind_flayer.png" 
         alt="Mind Flayer Silhouette" 
         className="w-full max-w-5xl object-contain mix-blend-overlay"
-        referrerPolicy="no-referrer"
       />
     </motion.div>
   </div>
@@ -121,17 +120,30 @@ export const VhsOverlay = () => (
 
 export const GridBackground = () => {
   return (
-    <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-background transition-colors duration-300">
+    <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-background">
+      {/* Upside Down / 80s Synthwave Perspective Grid */}
       <div 
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07] transition-opacity duration-300"
-        style={{
-          backgroundImage: `linear-gradient(var(--surface-high) 1px, transparent 1px), linear-gradient(90deg, var(--surface-high) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }}
-      />
+        className="absolute inset-0"
+        style={{ perspective: '800px' }}
+      >
+        <div 
+          className="absolute bottom-[-40%] left-[-50%] right-[-50%] h-[150%] opacity-40 origin-bottom"
+          style={{
+            transform: 'rotateX(75deg)',
+            backgroundImage: `
+              linear-gradient(to right, rgba(231,29,35,0.3) 2px, transparent 2px),
+              linear-gradient(to bottom, rgba(231,29,35,0.3) 2px, transparent 2px)
+            `,
+            backgroundSize: '60px 60px',
+            boxShadow: 'inset 0 0 100px rgba(0,0,0,1)'
+          }}
+        />
+      </div>
       
-      {/* Radial Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_80%)] transition-colors duration-300" />
+      {/* Vignette and Fades to blend the grid smoothly into the content */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_80%)]" />
+      <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-background via-background/80 to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-[20%] bg-gradient-to-t from-background to-transparent pointer-events-none" />
       
       {/* Floating Particles/Glows */}
       <motion.div 
