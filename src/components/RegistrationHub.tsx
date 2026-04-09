@@ -106,6 +106,14 @@ export const RegistrationHub = () => {
       color: "#E71D23",
       eventId: "ff",
       delay: 0.3
+    },
+    {
+      title: "Neon Cricket",
+      description: "Experience the gentleman's game like never before in a neon-lit arena.",
+      icon: Trophy,
+      color: "#F27D26",
+      eventId: "cricket",
+      delay: 0.4
     }
   ];
 
@@ -130,7 +138,7 @@ export const RegistrationHub = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           {events.map((event, index) => (
             <HubCard key={index} {...event} />
           ))}

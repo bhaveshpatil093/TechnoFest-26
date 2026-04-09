@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Cpu, MessageSquare, Gamepad2, ArrowLeft, ExternalLink, Sparkles, Info } from 'lucide-react';
+import { Cpu, MessageSquare, Gamepad2, Trophy, ArrowLeft, ExternalLink, Sparkles, Info } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { ParticleBackground } from '../components/ParticleBackground';
@@ -35,6 +35,14 @@ const events = [
     color: '#E71D23', 
     link: 'https://forms.gle/cvFJfjWmy7wogGAD8',
     description: 'Squad up for the ultimate battle royale tournament. Survival of the fittest in the high-stakes digital arena.'
+  },
+  { 
+    id: 'cricket', 
+    name: 'Neon Cricket', 
+    icon: Trophy, 
+    color: '#F27D26', 
+    link: 'https://forms.gle/hV4C2De55vVCeq8k9',
+    description: "The gentleman's game, reimagined in the neon glow. Compete in this high-energy indoor tournament."
   },
 ];
 
