@@ -113,7 +113,7 @@ export const HighlightsSection = () => {
     }
   ];
 
-  const marqueeText = "TECHNOFEST 2026 ✦ 18 APRIL ✦ AI & DS DEPT ✦ SAPKAL COLLEGE NASHIK ✦ PROJECT COMPETITION ✦ ADVENTURE WITH AI ✦ REGISTER NOW ✦ ";
+  const marqueeText = "TECHNOFEST 2026 ✦ 18 APRIL ✦ AI & DS DEPT ✦ SAPKAL COLLEGE NASHIK ✦ SKH HACKFEST 2K26 ✦ ADVENTURE WITH AI ✦ REGISTER NOW ✦ ";
 
   return (
     <section className="py-16 relative overflow-hidden bg-surface-low transition-colors duration-300">

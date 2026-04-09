@@ -69,8 +69,8 @@ export const ParticleBackground = () => {
 
     const init = () => {
       particles = [];
-      const density = window.innerWidth < 768 ? 15000 : 9000;
-      const numberOfParticles = (canvas.width * canvas.height) / density;
+      const density = window.innerWidth < 768 ? 25000 : 15000;
+      const numberOfParticles = Math.min((canvas.width * canvas.height) / density, 150);
       for (let i = 0; i < numberOfParticles; i++) {
         let x = Math.random() * canvas.width;
         let y = Math.random() * canvas.height;
@@ -78,26 +78,7 @@ export const ParticleBackground = () => {
       }
     };
 
-    const connect = () => {
-      let opacityValue = 1;
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a; b < particles.length; b++) {
-          let dx = particles[a].x - particles[b].x;
-          let dy = particles[a].y - particles[b].y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 100) {
-            opacityValue = 1 - (distance / 100);
-            ctx.strokeStyle = `rgba(231, 29, 35, ${opacityValue * 0.2})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-    };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -105,7 +86,6 @@ export const ParticleBackground = () => {
         particles[i].draw();
         particles[i].update();
       }
-      connect();
       animationFrameId = requestAnimationFrame(animate);
     };
 

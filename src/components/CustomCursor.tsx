@@ -42,6 +42,7 @@ export const CustomCursor = () => {
           x: '-50%',
           y: '-50%',
           opacity: isVisible ? 1 : 0,
+          willChange: 'transform',
         }}
       />
       
@@ -49,12 +50,13 @@ export const CustomCursor = () => {
       <motion.div
         className="fixed top-0 left-0 w-12 h-12 border border-cyan/30 rounded-full pointer-events-none z-[9998] hidden md:block"
         style={{
-          translateX: useSpring(cursorX, { damping: 35, stiffness: 500 }),
-          translateY: useSpring(cursorY, { damping: 35, stiffness: 500 }),
+          translateX: useSpring(cursorX, { damping: 40, stiffness: 400 }),
+          translateY: useSpring(cursorY, { damping: 40, stiffness: 400 }),
           x: '-50%',
           y: '-50%',
           scale: isVisible ? 1 : 0,
           opacity: isVisible ? 0.5 : 0,
+          willChange: 'transform',
         }}
       />
 

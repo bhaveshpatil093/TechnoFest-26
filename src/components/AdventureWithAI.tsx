@@ -1,6 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { motion } from "motion/react";
-import { Brain, Cpu, Gamepad2, Trophy, User, Phone } from "lucide-react";
+import { Brain, Cpu, Gamepad2, Trophy, User, Phone, Info } from "lucide-react";
+import { EventDetailsModal } from "./EventDetailsModal";
 
 import { GlitchHeading } from "./GlitchHeading";
 
@@ -23,11 +24,11 @@ interface SubEvent {
 const subEvents: SubEvent[] = [
   {
     id: "2.1",
-    name: "AI Prompting",
-    tagline: "Master the art of conversation with the machines.",
+    name: "PromptCraft",
+    tagline: "The ultimate AI-powered web development challenge.",
     staff: { name: "Prof. S. S. Mergal", phone: "7798375872" },
     student: { name: "Mr. Soham D. Mahajan", phone: "7887329442" },
-    accent: "#E71D23", // Stranger Things Red
+    accent: "#00F5FF", 
     icon: <Brain size={32} />,
   },
   {
@@ -52,7 +53,36 @@ const subEvents: SubEvent[] = [
   },
 ];
 
-const SubEventCard = ({ event, index }: { event: SubEvent; index: number }) => {
+const PROMPTCRAFT_DETAILS = {
+  description: "PromptCraft is an exciting AI-based challenge where participants use AI prompting tools to design and build a functional website or web application within a 2-hour window. The event is designed to test creativity, problem-solving ability, and how effectively a participant can communicate with AI tools.",
+  eligibility: [
+    "Open to all students currently enrolled in any Engineering and Polytechnic college in Maharashtra.",
+    "Participants can compete Solo only. No teaming allowed.",
+    "Each individual is allowed to register only once."
+  ],
+  rules: [
+    "Valid college ID card must be carried on the day of the event.",
+    "Participants must report to the venue at least 15 minutes before the event starts.",
+    "Problem Domains will be provided on the day of the event.",
+    "The domain acts as a broad theme — not a strict brief."
+  ],
+  guidelines: [
+    "Participants are allowed to use any AI tool (Claude, ChatGPT, Gemini, etc.)",
+    "Internet access provided for research, AI tools and documentation.",
+    "Participants must carry their own laptop. No systems provided.",
+    "Pre-built templates are strictly not allowed.",
+    "Copying code from other participants is not permitted."
+  ]
+};
+
+const DEFAULT_DETAILS = {
+  description: "Experience the thrill of competition in this sub-event. Follow the rules and guidelines to ensure a fair and exciting challenge for everyone involved.",
+  eligibility: ["Current Engineering or Polytechnic students.", "Registration fee paid.", "Valid College ID."],
+  rules: ["Report 15 minutes early.", "Follow coordinator instructions.", "Maintain sportsmanship."],
+  guidelines: ["Personal equipment may be required.", "Specific rules will be shared at the venue."]
+};
+
+const SubEventCard = ({ event, index, onViewDetails }: { event: SubEvent; index: number; onViewDetails: () => void }) => {
   return (
     <motion.div
       initial={{ opacity: 0, rotateY: 90 }}
@@ -70,7 +100,6 @@ const SubEventCard = ({ event, index }: { event: SubEvent; index: number }) => {
             alt={event.name} 
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1" 
           />
-          {/* Gradients to keep text highly legible while image shines */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-black/40 pointer-events-none group-hover:bg-black/10 transition-colors duration-500" />
         </>
@@ -129,34 +158,64 @@ const SubEventCard = ({ event, index }: { event: SubEvent; index: number }) => {
           </div>
         </div>
 
-        <button 
-          className="w-full py-3 rounded-lg font-display text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300 border shadow-lg"
-          style={{ 
-            backgroundColor: `${event.accent}11`,
-            borderColor: `${event.accent}44`,
-            color: event.accent
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = event.accent;
-            e.currentTarget.style.color = '#fff';
-            e.currentTarget.style.boxShadow = `0 0 20px ${event.accent}66`;
-            e.currentTarget.style.borderColor = event.accent;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = `${event.accent}11`;
-            e.currentTarget.style.color = event.accent;
-            e.currentTarget.style.boxShadow = 'none';
-            e.currentTarget.style.borderColor = `${event.accent}44`;
-          }}
-        >
-          Register Now
-        </button>
+        <div className="flex flex-col gap-3">
+          <button 
+            onClick={onViewDetails}
+            className="w-full py-2 rounded-lg font-display text-[9px] uppercase tracking-[0.2em] font-bold transition-all duration-300 border flex items-center justify-center gap-2 hover:bg-white/5"
+            style={{ 
+              borderColor: `${event.accent}44`,
+              color: event.accent
+            }}
+          >
+            <Info size={12} /> View Rules
+          </button>
+          
+          <a 
+            href={`/register?event=${event.id === "2.1" ? "ai" : event.id === "2.2" ? "ff" : "cricket"}`}
+            className="w-full"
+          >
+            <button 
+              className="w-full py-3 rounded-lg font-display text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300 border shadow-lg"
+              style={{ 
+                backgroundColor: `${event.accent}11`,
+                borderColor: `${event.accent}44`,
+                color: event.accent
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = event.accent;
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.boxShadow = `0 0 20px ${event.accent}66`;
+                e.currentTarget.style.borderColor = event.accent;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = `${event.accent}11`;
+                e.currentTarget.style.color = event.accent;
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = `${event.accent}44`;
+              }}
+            >
+              Register Now
+            </button>
+          </a>
+        </div>
       </div>
     </motion.div>
   );
 };
 
 export const AdventureWithAI = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedDetails, setSelectedDetails] = useState<{title: string, accent: string, data: any} | null>(null);
+
+  const handleViewDetails = (event: SubEvent) => {
+    setSelectedDetails({
+      title: event.name,
+      accent: event.accent,
+      data: event.id === "2.1" ? PROMPTCRAFT_DETAILS : DEFAULT_DETAILS
+    });
+    setModalOpen(true);
+  };
+
   return (
     <section className="min-h-screen flex items-center py-12 px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto w-full">
@@ -201,11 +260,25 @@ export const AdventureWithAI = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {subEvents.map((event, index) => (
             <div key={event.id} className="w-full">
-              <SubEventCard event={event} index={index} />
+              <SubEventCard 
+                event={event} 
+                index={index} 
+                onViewDetails={() => handleViewDetails(event)} 
+              />
             </div>
           ))}
         </div>
       </div>
+
+      {selectedDetails && (
+        <EventDetailsModal 
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          title={selectedDetails.title}
+          accent={selectedDetails.accent}
+          details={selectedDetails.data}
+        />
+      )}
     </section>
   );
 };

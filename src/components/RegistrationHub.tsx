@@ -84,36 +84,28 @@ const HubCard: React.FC<HubCardProps> = ({ title, description, icon: Icon, color
 export const RegistrationHub = () => {
   const events = [
     {
-      title: "Project Competition",
-      description: "Showcase your technical innovation and solve real-world problems with AI & Data Science.",
+      title: "SKH HackFest 2K26",
+      description: "A 2-day offline hackathon to showcase your innovation and technical prowess. Join the flagship event.",
       icon: Cpu,
-      color: "#E71D23", // Stranger Things Red
+      color: "#00F5FF", 
       eventId: "project",
       delay: 0.1
     },
     {
-      title: "AI Prompting",
-      description: "Master the art of prompt engineering and compete to generate the most accurate AI outputs.",
+      title: "PromptCraft",
+      description: "Master the art of prompt engineering and compete in AI-driven challenges.",
       icon: MessageSquare,
-      color: "#F27D26", // Stranger Things Orange
+      color: "#F27D26", 
       eventId: "ai",
       delay: 0.2
     },
     {
       title: "Free Fire",
-      description: "Squad up for the ultimate battle royale tournament. Survival of the fittest in the digital arena.",
+      description: "Squad up for the ultimate battle royale tournament. Survival of the fittest.",
       icon: Gamepad2,
-      color: "#E71D23", // Stranger Things Red
+      color: "#E71D23",
       eventId: "ff",
       delay: 0.3
-    },
-    {
-      title: "Neon Cricket",
-      description: "Experience cricket like never before with neon equipment and high-energy indoor gameplay.",
-      icon: Trophy,
-      color: "#F27D26", // Stranger Things Orange
-      eventId: "cricket",
-      delay: 0.4
     }
   ];
 

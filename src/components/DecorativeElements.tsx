@@ -15,12 +15,13 @@ export const WaveDivider = () => (
 );
 
 export const UpsideDownParticles = () => {
-  const particles = Array.from({ length: 40 });
+  const particles = Array.from({ length: 20 });
   return (
     <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
       {particles.map((_, i) => (
         <motion.div
-          key={i}
+           style={{ willChange: 'transform' }}
+           key={i}
           initial={{ 
             x: Math.random() * 100 + "%", 
             y: Math.random() * 100 + "%",
@@ -112,10 +113,12 @@ export const RiftEffect = () => (
 );
 
 export const VhsOverlay = () => (
-  <div className="fixed inset-0 pointer-events-none z-[99] opacity-[0.03] mix-blend-screen overflow-hidden">
-    <div className="absolute inset-0 bg-[url('https://media.giphy.com/media/oEI9uWUqnW9kA/giphy.gif')] bg-repeat opacity-20" />
-    <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]" />
-  </div>
+  <>
+    <div className="vhs-noise" />
+    <div className="fixed inset-0 pointer-events-none z-[99] opacity-[0.03] mix-blend-overlay overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[size:100%_2px,3px_100%]" />
+    </div>
+  </>
 );
 
 export const GridBackground = () => {
@@ -167,9 +170,9 @@ export const GridBackground = () => {
 };
 
 export const ScanningGrid = () => (
-  <div className="absolute inset-0 pointer-events-none z-0">
+  <div className="absolute inset-0 pointer-events-none z-0 contain-content">
     <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(231,29,35,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(231,29,35,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
-    <div className="scan-line" />
+    <div className="scan-line" style={{ willChange: 'transform' }} />
   </div>
 );
 

@@ -70,7 +70,7 @@ export const FAQSection = () => {
     },
     {
       question: "Can I register for multiple events?",
-      answer: "Yes! You can participate in the Project Competition and any one sub-event under 'Adventure with AI' (AI Prompting, Free Fire, or Neon Cricket)."
+      answer: "Yes! You can participate in the Project Competition and any one sub-event under 'Adventure with AI' (PromptCraft, Free Fire, or Neon Cricket)."
     },
     {
       question: "What should a project submission include?",
@@ -86,7 +86,7 @@ export const FAQSection = () => {
     },
     {
       question: "What is the venue for the competitions?",
-      answer: "Project Competition: Main Hall. AI Prompting & Free Fire: AI & DS Labs. Neon Cricket: Indoor Sports Arena."
+      answer: "Project Competition: Main Hall. PromptCraft & Free Fire: AI & DS Labs. Neon Cricket: Indoor Sports Arena."
     },
     {
       question: "How and when will winners be announced?",

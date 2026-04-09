@@ -203,7 +203,7 @@ export const TeamSection = () => {
                 <motion.div variants={itemVariants}>
                   <CoordinatorCard 
                     name="Prof. S. S. Mergal"
-                    role="Staff (AI Prompting)"
+                    role="Staff (PromptCraft)"
                     mobile="7798375872"
                     email="mergalswapnil@gmail.com"
                     accent="amber"
@@ -230,7 +230,7 @@ export const TeamSection = () => {
                 <motion.div variants={itemVariants}>
                   <CoordinatorCard 
                     name="Mr. Soham D. Mahajan"
-                    role="Student (AI Prompting)"
+                    role="Student (PromptCraft)"
                     mobile="7887329442"
                     email="sohammahajan788@gmail.com"
                     accent="amber"
