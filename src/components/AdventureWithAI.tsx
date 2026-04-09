@@ -28,7 +28,7 @@ const subEvents: SubEvent[] = [
     tagline: "The ultimate AI-powered web development challenge.",
     staff: { name: "Prof. S. S. Mergal", phone: "7798375872" },
     student: { name: "Mr. Soham D. Mahajan", phone: "7887329442" },
-    accent: "#00F5FF", 
+    accent: "#00F5FF",
     icon: <Brain size={32} />,
   },
   {
@@ -46,7 +46,7 @@ const subEvents: SubEvent[] = [
     name: "Neon Cricket",
     tagline: "The gentleman's game, reimagined in the neon glow.",
     staff: { name: "Prof. S. K. Pathan", phone: "8149545380" },
-    student: { name: "Mr. Krushna R. Thakare", phone: "963942584" },
+    student: { name: "Mr. Krushna R. Thakare", phone: "9673942584" },
     accent: "#E71D23", // Stranger Things Red
     icon: <Trophy size={32} />,
     image: "/assets/3.jpg",
@@ -95,10 +95,10 @@ const SubEventCard = ({ event, index, onViewDetails }: { event: SubEvent; index:
       {/* Dynamic Background Image */}
       {event.image && (
         <>
-          <img 
-            src={event.image} 
-            alt={event.name} 
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1" 
+          <img
+            src={event.image}
+            alt={event.name}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-black/40 pointer-events-none group-hover:bg-black/10 transition-colors duration-500" />
@@ -106,16 +106,16 @@ const SubEventCard = ({ event, index, onViewDetails }: { event: SubEvent; index:
       )}
 
       {/* Accent Glow */}
-      <div 
+      <div
         className="absolute -top-10 -right-10 w-32 h-32 blur-[60px] opacity-20 transition-opacity group-hover:opacity-40"
         style={{ backgroundColor: event.accent }}
       />
 
       <div className="p-6 flex flex-col h-full relative z-10 w-full">
         <div className="mb-4">
-          <div 
+          <div
             className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 border transition-all duration-300 group-hover:scale-110 shadow-lg"
-            style={{ 
+            style={{
               backgroundColor: `${event.accent}11`,
               borderColor: `${event.accent}44`,
               color: event.accent,
@@ -159,24 +159,24 @@ const SubEventCard = ({ event, index, onViewDetails }: { event: SubEvent; index:
         </div>
 
         <div className="flex flex-col gap-3">
-          <button 
+          <button
             onClick={onViewDetails}
             className="w-full py-2 rounded-lg font-display text-[9px] uppercase tracking-[0.2em] font-bold transition-all duration-300 border flex items-center justify-center gap-2 hover:bg-white/5"
-            style={{ 
+            style={{
               borderColor: `${event.accent}44`,
               color: event.accent
             }}
           >
             <Info size={12} /> View Rules
           </button>
-          
-          <a 
+
+          <a
             href={`/register?event=${event.id === "2.1" ? "ai" : event.id === "2.2" ? "ff" : "cricket"}`}
             className="w-full"
           >
-            <button 
+            <button
               className="w-full py-3 rounded-lg font-display text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300 border shadow-lg"
-              style={{ 
+              style={{
                 backgroundColor: `${event.accent}11`,
                 borderColor: `${event.accent}44`,
                 color: event.accent
@@ -205,7 +205,7 @@ const SubEventCard = ({ event, index, onViewDetails }: { event: SubEvent; index:
 
 export const AdventureWithAI = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedDetails, setSelectedDetails] = useState<{title: string, accent: string, data: any} | null>(null);
+  const [selectedDetails, setSelectedDetails] = useState<{ title: string, accent: string, data: any } | null>(null);
 
   const handleViewDetails = (event: SubEvent) => {
     setSelectedDetails({
@@ -230,9 +230,9 @@ export const AdventureWithAI = () => {
             className="mb-6 relative z-10"
           >
             <div className="absolute inset-0 bg-cyan/30 blur-[50px] rounded-full" />
-            <img 
-              src="/assets/15.png" 
-              alt="AI Adventure" 
+            <img
+              src="/assets/15.png"
+              alt="AI Adventure"
               className="relative w-28 h-28 object-contain drop-shadow-[0_0_20px_rgba(0,245,255,0.4)]"
             />
           </motion.div>
@@ -243,14 +243,14 @@ export const AdventureWithAI = () => {
             viewport={{ once: true }}
           >
             <span className="text-amber font-display text-[10px] uppercase tracking-[0.4em] mb-1 block">Event 02</span>
-            <GlitchHeading 
+            <GlitchHeading
               dataText="Adventure with AI"
               className="text-3xl md:text-4xl mb-4 text-glow-cyan"
             >
               Adventure with <span className="text-amber">AI</span>
             </GlitchHeading>
             <p className="text-foreground/60 font-sub max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-              Step into a realm where artificial intelligence meets high-stakes adventure. 
+              Step into a realm where artificial intelligence meets high-stakes adventure.
               Challenge your limits in this multi-faceted tech odyssey.
             </p>
           </motion.div>
@@ -260,10 +260,10 @@ export const AdventureWithAI = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {subEvents.map((event, index) => (
             <div key={event.id} className="w-full">
-              <SubEventCard 
-                event={event} 
-                index={index} 
-                onViewDetails={() => handleViewDetails(event)} 
+              <SubEventCard
+                event={event}
+                index={index}
+                onViewDetails={() => handleViewDetails(event)}
               />
             </div>
           ))}
@@ -271,7 +271,7 @@ export const AdventureWithAI = () => {
       </div>
 
       {selectedDetails && (
-        <EventDetailsModal 
+        <EventDetailsModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
           title={selectedDetails.title}
