@@ -36,7 +36,7 @@ const subEvents: SubEvent[] = [
     name: "Free Fire",
     tagline: "Survival of the fittest in the digital battleground.",
     staff: { name: "Prof. S. S. Suryawanshi", phone: "8530236452" },
-    student: { name: "Mr. Tejas B. Bhalerao", phone: "8421453265" },
+    student: { name: "Mr. Darshan Gavhane", phone: "8830395996" },
     accent: "#F27D26", // Stranger Things Orange
     icon: <Gamepad2 size={32} />,
     image: "/assets/2.jpg",
